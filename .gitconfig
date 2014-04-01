@@ -1,0 +1,56 @@
+[user]
+  name = Mike Petrovich
+  email = mike@nextbigsound.com
+
+[color]
+  ui = true
+
+[alias]
+  aliases = !"cat ~/.gitconfig"
+
+  # Branching
+  br = branch
+  co = checkout
+  com = checkout master
+  new = checkout -b
+  track = !"git checkout --track origin/$1"
+  del = !"git branch -D "$1"; git push origin :$1 && true"
+  remotes = remote -v show
+
+  # Searching & History
+  find = !"sh -c 'git ls-tree -r --name-only HEAD | grep --color $1' -"
+  lg = log -p
+  list = !"git --no-pager log origin/master..HEAD --abbrev-commit --pretty=oneline"
+  tree = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+
+  # Reviewing
+  st = status
+  df = diff
+  unst = reset HEAD --
+  nuke = !"git reset --hard && git clean -fd"
+  
+  # Stashing
+  ss = stash save --include-untracked
+  si = stash save --keep-index
+  sl = stash list
+  sa = stash apply
+  sp = stash pop
+  sd = stash drop
+
+  # Committing
+  cm = commit -m
+  cma = !"git add . && git commit -a -m"
+  amend = !"git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend"
+  amenda = !"git add . && git amend"
+  amendm = commit --amend -m
+  wip = !"git add . && git commit -a -m "WIP" --no-verify"
+  pop = reset HEAD~1
+
+  # Updating
+  rb = rebase master
+  pu = pull upstream master
+  up = !"git checkout master && git pull upstream master && git push origin HEAD && git checkout - && git rebase master"
+
+  # Pushing
+  p = push origin HEAD
+  pf = push origin HEAD --force
