@@ -13,7 +13,7 @@
   co = checkout
   com = checkout master
   new = checkout -b
-  track = !"git checkout --track origin/$1"
+  copy = !"git fetch $1 && git checkout -b $2 $1/$2 && true"
   del = !"git branch -D "$1"; git push origin :$1 && true"
   remotes = remote -v show
 
