@@ -9,7 +9,7 @@
   aliases = !"cat ~/.gitconfig"
 
   # Branching
-  br = branch
+  b = branch
   co = checkout
   com = checkout master
   new = checkout -b
