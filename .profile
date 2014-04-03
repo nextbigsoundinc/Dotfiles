@@ -25,6 +25,12 @@ source $GITAWAREPROMPT/main.sh
 export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
 
+# File sync with rsync
+fs() {
+	echo "Syncing files..."
+	rsync -qzar --exclude '.git*' --exclude '.DS_Store' --exclude 'dist' -e 'ssh' --delete /Users/mike/repos/Unified mike-petrovich@dev:/home/mike-petrovich/repos/
+}
+
 # Create a pull request on GitHub for the specified branch.
 # Requires GitHub Hub to be installed. (see hub.github.com)
 #
