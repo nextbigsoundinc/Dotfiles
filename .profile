@@ -1,16 +1,18 @@
-# Sugar
-go() { ssh mike-petrovich@$1; }
-alias ll="ls -alF"
-alias g=git
-
-# Git utilities, see hub.github.com
-alias git=hub
+# User configuration
+remote_username="mike-petrovich"
+remote_host="dev"
+git_username="mpetrovich"
 
 # Set Sublime as default editor
 export EDITOR='sub -w'
 
-# Tab-completion of git commands
-# See: https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
+# Bash sugar
+alias ll="ls -alF"
+alias g=git
+alias git=hub  # http://hub.github.com
+
+# Enable tab-completion of git commands
+# https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
@@ -18,43 +20,89 @@ if [ -f /etc/bash_completion.d/git ]; then
   . /etc/bash_completion.d/git
 fi
 
-# Show Git branch & dirty flag in command prompt
-# See: https://github.com/jimeh/git-aware-prompt
+# Show git branch & dirty flag in command prompt
+# https://github.com/jimeh/git-aware-prompt
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source $GITAWAREPROMPT/main.sh
 export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
 
-# File sync with rsync
+# SSH to a host.
+#
+# usage:
+#   go HOSTNAME
+#
+# example:
+#   go 10.123.14.14
+#   go dev
+#
+go() {
+	ssh $remote_username@$1
+}
+
+# Rsyncs files and subdirectories in the current directory to a remote host.
+#
+# usage:
+#   fs
+#
 fs() {
 	echo "Syncing files..."
-	rsync -qzar --exclude '.git*' --exclude '.DS_Store' --exclude 'dist' -e 'ssh' --delete /Users/mike/repos/Unified mike-petrovich@dev:/home/mike-petrovich/repos/
+	local_source=`pwd`
+	remote_dest="/home/"$remote_username"/repos/"
+	rsync -qzar --exclude '.git*' --exclude '.DS_Store' --exclude 'dist' -e 'ssh' --delete $local_source $remote_username@$remote_host:$remote_dest
 }
 
-# Create a pull request on GitHub for the specified branch.
-# Requires GitHub Hub to be installed. (see hub.github.com)
+# Open a new pull request. (requires GitHub Hub, see hub.github.com)
 #
 # usage:
-#   pr {branch}
+#   pr [DEST_BRANCH [SOURCE_BRANCH]]
 #
-# example:
-#   pr bugfix-123
+# example: Opens a PR from the current branch to nextbigsoundinc:master
+#   pr
+#
+# example: Opens a PR from the current branch to nextbigsoundinc:feature
+#   pr nextbigsoundinc:feature
+#
+# example: Opens a PR from my-feature to mpetrovich:feature
+#   pr mpetrovich:feature my-feature
+#
 pr() {
-	BRANCH=$(git rev-parse --abbrev-ref HEAD)
+	if [ $# == 2 ]; then
+		# pr DEST_BRANCH SOURCE_BRANCH
+		dest_branch=$1
+		source_branch=$2
+	elif [ $# == 1 ]; then
+		# pr DEST_BRANCH
+		dest_branch=$1
+	else
+		# pr
+		source_branch=$(git rev-parse --abbrev-ref HEAD)
+		dest_branch="nextbigsoundinc:master"
+	fi
+
 	git push origin HEAD
-	git pull-request -o -b nextbigsoundinc:master -h mpetrovich:$BRANCH -m "$1"
+	git pull-request -o -b $dest_branch -h $git_username:$source_branch -m
 }
 
-# Tails the specified log for a particular environment.
+# Tail an environment apache log.
 #
 # usage:
-#   log {type} [{subdomain}]
+#   log LOGTYPE [SUBDOMAIN]
 #
-# example:
+#   LOGTYPE: "error", "access"
+#   SUBDOMAIN: "premium", "spotify"
+#
+# example: Tail the premium error log
 #   log error premium
+#
+# example: Tail the Spotify access log
 #   log access spotify
-#   log error    (error logs for web, since it has no subdomain)
+#
+# example: Tail the web (www.*) error log
+#   log error
+#
 log() {
-	sub=${2:-}${2:+"."}
-	tail -f /var/log/apache2/${sub}mike-petrovich.tnbsdev.com-$1.log
+	logtype=$1
+	subdomain=${2:-}${2:+"."}
+	tail -f /var/log/apache2/${subdomain}${remote_username}.tnbsdev.com-${logtype}.log
 }
