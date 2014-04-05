@@ -47,7 +47,7 @@ go() {
 #
 fs() {
 	echo "Syncing files..."
-	local_source=`pwd`
+	local_source=`pwd -P`
 	remote_dest="/home/"$remote_username"/repos/"
 	rsync -qzar --exclude '.git*' --exclude '.DS_Store' --exclude 'dist' -e 'ssh' --delete $local_source $remote_username@$remote_host:$remote_dest
 }
@@ -56,6 +56,9 @@ fs() {
 #
 # usage:
 #   pr [DEST_BRANCH [SOURCE_BRANCH]]
+#
+#   DEST_BRANCH: Must be in a "user:branch" format
+#   SOURCE_BRANCH: Only the branch name; the git user is prefixed automatically
 #
 # example: Opens a PR from the current branch to nextbigsoundinc:master
 #   pr
