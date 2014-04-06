@@ -6,52 +6,120 @@
   ui = true
 
 [alias]
-  aliases = !"cat ~/.gitconfig"
 
   # Branching
+  # --------------------------------------------------------------------------
   b = branch
   co = checkout
   com = checkout master
+
+  # Check out a new branch
   new = checkout -b
+
+  # Pull down a copy of a remote branch
+  # usage: git copy REMOTE_USER REMOTE_BRANCH
+  # example: git copy mpetrovich bugfix
   copy = !"git fetch $1 && git checkout -b $2 $1/$2 && true"
+
+  # Delete a single branch locally and in the origin (be careful!)
   del = !"git branch -D "$1"; git push origin :$1 && true"
+
+  # Show all remotes
   remotes = remote -v show
 
-  # Searching & History
-  find = !"sh -c 'git ls-tree -r --name-only HEAD | grep --color $1' -"
-  lg = log -p
+
+  # History
+  # --------------------------------------------------------------------------
+  
+  # Grep the git log
+  # usage: git lg REGEX
+  # example: git lg "debug\b"
+  lg = log --grep
+
+  # Show all commits between the current branch and master
   l = !"git --no-pager log origin/master..HEAD --abbrev-commit --pretty=oneline"
+
+  # Show a tree of all commits
   t = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 
+
   # Reviewing
+  # --------------------------------------------------------------------------
   s = status
   d = diff
+
+  # Unstage all staged commits
   unst = reset HEAD --
+
+  # Remove any uncommitted changes, including new/removed files
+  # CAUTION: This is destructive and cannot be undone
   nuke = !"git reset --hard && git clean -fd"
+
   
   # Stashing
-  ss = stash save --include-untracked
-  si = stash save --keep-index
+  # --------------------------------------------------------------------------
   sl = stash list
   sa = stash apply
   sp = stash pop
   sd = stash drop
 
+  # Stashes any uncommitted changes, including new/removed files
+  # usage: git ss [LABEL]
+  # example: git ss "Work in progress"
+  ss = stash save --include-untracked
+
+  # Stashes only unstaged changes
+  si = stash save --keep-index
+
+
   # Committing
+  # --------------------------------------------------------------------------
   cm = commit -m
+
+  # Stage all changes and commit them with a message
+  # usage: git cma MESSAGE
+  # example: git cma "Fix bug for XYZ"
   cma = !"git add . && git commit -a -m"
+
+  # Amend the last commit with any staged changes
   amend = !"git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend"
-  amenda = !"git add . && git amend"
+
+  # Amend the last commit with any staged changes and a different message
   amendm = commit --amend -m
+
+  # Amend the last commit with all uncommitted changes
+  amenda = !"git add . && git amend"
+
+  # Commits all uncommitted changes as a "work in progress" commit
   wip = !"git add . && git commit -a -m "WIP" --no-verify"
+
+  # Un-commits the last commit
   undo = reset --soft HEAD^
 
+
   # Updating
+  # --------------------------------------------------------------------------
   rb = rebase master
   rbc = rebase --continue
   pu = pull upstream master
+  
+  # Rebases the current branch against an updated master
   up = !"git checkout master && git pull upstream master && git push origin HEAD && git checkout - && git rebase master"
 
+
   # Pushing
+  # --------------------------------------------------------------------------
   p = push origin HEAD
   pf = push origin HEAD --force
+
+
+  # Miscellaneous
+  # --------------------------------------------------------------------------
+  
+  # Find a file by name
+  # usage: git find FILENAME
+  # example: git find index.php
+  find = !"sh -c 'git ls-tree -r --name-only HEAD | grep --color $1' -"
+
+  # Lists all aliases in this file
+  aliases = !"cat ~/.gitconfig"
