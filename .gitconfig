@@ -44,7 +44,7 @@
   amenda = !"git add . && git amend"
   amendm = commit --amend -m
   wip = !"git add . && git commit -a -m "WIP" --no-verify"
-  pop = reset HEAD~1
+  undo = reset --soft HEAD^
 
   # Updating
   rb = rebase master
