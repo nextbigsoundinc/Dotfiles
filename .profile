@@ -84,7 +84,7 @@ pr() {
 	fi
 
 	git push origin HEAD
-	git pull-request -o -b $dest_branch -h $git_username:$source_branch -m
+	git pull-request -o -b $dest_branch -h $git_username:$source_branch
 }
 
 # Tail an environment apache log.
