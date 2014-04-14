@@ -30,7 +30,7 @@
 
   # History
   # --------------------------------------------------------------------------
-  
+
   # Grep the git log
   # usage: git lg REGEX
   # example: git lg "debug\b"
@@ -40,7 +40,7 @@
   l = !"git --no-pager log origin/master..HEAD --abbrev-commit --pretty=oneline"
 
   # Show a tree of all commits
-  t = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  t = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 
 
   # Reviewing
@@ -55,7 +55,7 @@
   # CAUTION: This is destructive and cannot be undone
   nuke = !"git reset --hard && git clean -fd"
 
-  
+
   # Stashing
   # --------------------------------------------------------------------------
   sl = stash list
@@ -102,7 +102,7 @@
   rb = rebase master
   rbc = rebase --continue
   pu = pull upstream master
-  
+
   # Rebases the current branch against an updated master
   up = !"git checkout master && git pull upstream master && git push origin HEAD && git checkout - && git rebase master"
 
@@ -115,7 +115,7 @@
 
   # Miscellaneous
   # --------------------------------------------------------------------------
-  
+
   # Find a file by name
   # usage: git find FILENAME
   # example: git find index.php
