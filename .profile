@@ -27,8 +27,7 @@ source $GITAWAREPROMPT/main.sh
 export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
 
-# SSH to a host using Mosh.
-# See: http://mosh.mit.edu/
+# SSH to a host.
 #
 # usage:
 #   go HOSTNAME
@@ -38,6 +37,20 @@ export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
 #   go dev
 #
 go() {
+	ssh $remote_username@$1
+}
+
+# SSH to a host using Mosh.
+# See: http://mosh.mit.edu/
+#
+# usage:
+#   mo HOSTNAME
+#
+# example:
+#   mo 10.123.14.14
+#   mo dev
+#
+mo() {
 	mosh $remote_username@$1
 }
 
