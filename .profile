@@ -27,7 +27,8 @@ source $GITAWAREPROMPT/main.sh
 export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
 
-# SSH to a host.
+# SSH to a host using Mosh.
+# See: http://mosh.mit.edu/
 #
 # usage:
 #   go HOSTNAME
@@ -37,7 +38,7 @@ export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
 #   go dev
 #
 go() {
-	ssh $remote_username@$1
+	mosh $remote_username@$1
 }
 
 # Rsyncs files and subdirectories in the current directory to a remote host.
