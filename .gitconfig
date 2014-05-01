@@ -16,6 +16,9 @@
   # Check out a new branch
   new = checkout -b
 
+  # Rename a branch
+  rename = branch -m
+
   # Pull down a copy of a remote branch
   # usage: git copy REMOTE_USER REMOTE_BRANCH
   # example: git copy mpetrovich bugfix
