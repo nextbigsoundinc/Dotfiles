@@ -45,7 +45,7 @@
 
   # Reviewing
   # --------------------------------------------------------------------------
-  s = status
+  s = status -sb
   d = diff
 
   # Unstage all staged commits
