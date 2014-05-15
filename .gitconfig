@@ -82,7 +82,7 @@
   # Stage all changes and commit them with a message
   # usage: git cma MESSAGE
   # example: git cma "Fix bug for XYZ"
-  cma = !"git add . && git commit -a -m"
+  cma = !"git add --all && git commit -a -m"
 
   # Amend the last commit with any staged changes
   amend = !"git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend"
