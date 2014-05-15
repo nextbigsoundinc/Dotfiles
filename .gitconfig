@@ -94,7 +94,7 @@
   amenda = !"git add . && git amend"
 
   # Commits all uncommitted changes as a "work in progress" commit
-  wip = !"git add . && git commit -a -m "WIP" --no-verify"
+  wip = !"git add --all && git commit -a -m "WIP" --no-verify"
 
   # Un-commits the last commit
   undo = reset --soft HEAD^
