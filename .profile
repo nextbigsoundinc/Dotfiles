@@ -22,10 +22,12 @@ fi
 
 # Show git branch & dirty flag in command prompt
 # https://github.com/jimeh/git-aware-prompt
-export GITAWAREPROMPT=~/.bash/git-aware-prompt
-source $GITAWAREPROMPT/main.sh
-export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
-export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
+if [ -f ~/.bash/git-aware-prompt ]; then
+	export GITAWAREPROMPT=~/.bash/git-aware-prompt
+	source $GITAWAREPROMPT/main.sh
+	export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+	export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
+fi
 
 # SSH to a host.
 #
