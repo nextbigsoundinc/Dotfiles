@@ -109,7 +109,7 @@ pr() {
 #   log LOGTYPE [SUBDOMAIN]
 #
 #   LOGTYPE: "error", "access"
-#   SUBDOMAIN: "premium", "spotify"
+#   SUBDOMAIN: "premium", "spotify" (omit for www)
 #
 # example: Tail the premium error log
 #   log error premium
