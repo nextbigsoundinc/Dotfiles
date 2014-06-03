@@ -108,7 +108,7 @@ pr() {
 # usage:
 #   log LOGTYPE [SUBDOMAIN]
 #
-#   LOGTYPE: "error", "access"
+#   LOGTYPE: "error", "access", "php"
 #   SUBDOMAIN: "premium", "spotify" (omit for www)
 #
 # example: Tail the premium error log
@@ -120,8 +120,15 @@ pr() {
 # example: Tail the web (www.*) error log
 #   log error
 #
+# example: Tail the PHP web error log
+#   log php
+#
 log() {
-	logtype=$1
-	subdomain=${2:-}${2:+"."}
-	tail -f /var/log/apache2/${subdomain}${remote_username}.tnbsdev.com-${logtype}.log
+	if [ $1 == php ]; then
+		tail -f /var/log/nbs/php_errors.log
+	else
+		logtype=$1
+		subdomain=${2:-}${2:+"."}
+		tail -f /var/log/apache2/${subdomain}${remote_username}.tnbsdev.com-${logtype}.log
+	fi
 }
