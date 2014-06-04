@@ -104,7 +104,9 @@
   # Updating
   # --------------------------------------------------------------------------
   rb = rebase master
+  rbi = rebase master -i
   rbc = rebase --continue
+  rbs = rebase --skip
   pu = pull upstream master
 
   # Rebases the current branch against an updated master
