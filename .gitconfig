@@ -107,6 +107,7 @@
   rbi = rebase master -i
   rbc = rebase --continue
   rbs = rebase --skip
+  rba = rebase --abort
   pu = pull upstream master
 
   # Rebases the current branch against an updated master
