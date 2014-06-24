@@ -49,6 +49,6 @@ In `~/repos/Dotfiles/.gitconfig`:
   email = mike@nextbigsound.com
 ```
 
-#### Notes
+## Notes
 
 - These dotfiles assume that your upstream remote is called `upstream`.
