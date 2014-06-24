@@ -18,14 +18,14 @@ Optional:
 git clone git@github.com:mpetrovich/Dotfiles.git ~/repos/Dotfiles
 ```
 
-#### 3. Source `.profile` from within your bash profile
+#### 3. Source the profile from within your bash profile
 
 In `~/.bash_profile` or `~/.myprofile`, add:
 ```shell
 . ~/repos/Dotfiles/.profile
 ```
 
-#### 4. Symlink your `.gitconfig` to the cloned one.
+#### 4. Symlink your gitconfig to the cloned one.
 
 Don't forget to back up your existing gitconfig!
 ```shell
