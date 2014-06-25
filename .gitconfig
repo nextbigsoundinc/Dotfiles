@@ -32,7 +32,7 @@
   # Pull down a copy of a remote branch
   # usage: git copy REMOTE_USER REMOTE_BRANCH
   # example: git copy mpetrovich bugfix
-  copy = !"git fetch $1 && git checkout -b $2 $1/$2 && true"
+  copy = !"git fetch $1 $2 && git checkout -b $2 $1/$2 && true"
 
   # Delete a single branch locally and in the origin (be careful!)
   delete = !"git branch -D "$1"; git push origin :$1 && true"
@@ -60,6 +60,7 @@
 
   # Reviewing
   # --------------------------------------------------------------------------
+  st = status
   s = status -sb
 
   # Compare unstaged changes with the current branch
@@ -70,6 +71,9 @@
 
   # Compare with master
   dm = diff master
+
+  # Interactive staging
+  istage = add -p
 
   # Unstage all staged commits
   unstage = reset HEAD --
