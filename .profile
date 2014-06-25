@@ -1,7 +1,7 @@
 # User configuration
-export remote_username="mike-petrovich"
-export remote_host="dev"
-export git_username="mpetrovich"
+export remote_username="john-doe"
+export remote_host="10.123.14.14"
+export git_username="jdoe"
 
 # Set Sublime as default editor
 export EDITOR='sub -w'
