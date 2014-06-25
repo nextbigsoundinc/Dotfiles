@@ -112,15 +112,14 @@
 
   # Updating
   # --------------------------------------------------------------------------
-  rb = rebase master
-  rbi = rebase master -i
+  rb = !"git rebase master && git fs"
+  rbi = !"git rebase master --interactive && git fs"
   rbc = rebase --continue
   rbs = rebase --skip
   rba = rebase --abort
-  pu = pull upstream master
 
   # Rebases the current branch against an updated master
-  up = !"git checkout master && git pull upstream master && git push origin HEAD && git checkout - && git rebase master"
+  latest = !"git checkout master && git pull upstream master && git push origin HEAD && git checkout - && git rebase master && git fs"
 
 
   # Pushing
@@ -131,6 +130,11 @@
 
   # Miscellaneous
   # --------------------------------------------------------------------------
+
+  # Syncs files with the remote host (see 'User configuration' in .profile)
+  # Disabled by default; uncomment the line below to use
+  # fs = !"fs && true"
+  fs = !"true"
 
   # Find a file by name
   # usage: git find FILENAME

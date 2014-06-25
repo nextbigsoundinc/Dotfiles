@@ -1,7 +1,7 @@
 # User configuration
-remote_username="mike-petrovich"
-remote_host="dev"
-git_username="mpetrovich"
+export remote_username="mike-petrovich"
+export remote_host="dev"
+export git_username="mpetrovich"
 
 # Set Sublime as default editor
 export EDITOR='sub -w'
@@ -67,6 +67,9 @@ fs() {
 	remote_dest="/home/"$remote_username"/repos/"
 	rsync -qzar --exclude '.git*' --exclude '.DS_Store' --exclude 'dist' -e 'ssh' --delete $local_source $remote_username@$remote_host:$remote_dest
 }
+
+# Makes 'fs' available in git hooks
+export -f fs
 
 # Open a new pull request. (requires GitHub Hub, see hub.github.com)
 #
