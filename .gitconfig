@@ -10,6 +10,8 @@
   # https://gist.github.com/bkeating/329690
   # external = /Users/mike/bin/git-diff-cmd.sh
 
+[rebase]
+  autosquash = true
 
 [alias]
 
