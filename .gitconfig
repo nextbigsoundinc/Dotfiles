@@ -6,8 +6,7 @@
   ui = true
 
 [diff]
-  # Uncomment the line below after setting up an external diff tool via:
-  # https://gist.github.com/bkeating/329690
+  # Uncomment the line below after setting up an external diff tool via https://gist.github.com/bkeating/329690
   # external = /Users/mike/bin/git-diff-cmd.sh
 
 [rebase]
