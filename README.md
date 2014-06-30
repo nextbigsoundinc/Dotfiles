@@ -77,52 +77,76 @@ All dotfiles are documented with usage syntax and examples. For convenience, you
 
 #### Example Workflow
 
+First, let's get the latest from upstream/master
 ```
-# First, let's get the latest from upstream/master
 git com;
 git latest;
+```
 
-# Then, we checkout a new branch for our feature
+Then, we checkout a new branch for our feature
+```
 git new feature;
+```
 
-# We make some changes...
-# <files changed>
+We make some changes...
+```
+<files changed>
 git cma "Add fancy new feature";
+```
 
-# We run our unit tests, and they break...
-# <fix failing tests>
+We run our unit tests, and they break...
+```
+<fix failing tests>
 git cma "Fix failing unit tests";
+```
 
-# We add documentation...
-# <add code documentation>
+We add documentation...
+```
+<add code documentation>
 git cma "Add documentation";
+```
 
-# ...and then discover a typo
-# <fix typo>
+...and then discover a typo
+```
+<fix typo>
 git amenda;
+```
 
-# It's been some time since we got the latest from upstream/master...
+It's been some time since we got the latest from upstream/master...
+```
 git latest;
+```
 
-# And someone else modified the same code, so conflicts!
-# <fix conflicts>
+And someone else modified the same code, so conflicts!
+```
+<fix conflicts>
 git rbc;
+```
 
-# Rebase successful! Let's open a pull request
+Rebase successful! Let's open a pull request
+```
 pr;
+```
 
-# Someone suggests some changes
-# <changes made>
+Someone suggests some changes
+```
+<changes made>
 git cma "Changed XYZ to do ABC";
+```
 
-# Later, someone suggests a better fix for the earlier unit test failure
-# <replace your fix with theirs>
+Later, someone suggests a better fix for the earlier unit test failure
+```
+<replace your fix with theirs>
 git cma "Better fix for failing tests";
+```
 
-# Pull request approved for merging, but let's squash first
+Pull request approved for merging, but let's squash first
+```
 git squash "Add new XZY feature";
 git pf;
+```
 
-# After merging, we don't need our feature branch anymore
+After merging, we don't need our feature branch anymore
+```
 git delete feature;
 ```
