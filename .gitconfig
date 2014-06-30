@@ -17,6 +17,16 @@
 
 [alias]
 
+  # Remote Sync
+  # --------------------------------------------------------------------------
+
+  # Sync files with the remote host (see 'User configuration' in .profile)
+  # Disabled by default; uncomment the line below to use
+  # usage:    git fs
+  # fs = !"fs && true"  # Filesync ON
+  fs = !"true"  # Filesync OFF
+
+
   # Branching
   # --------------------------------------------------------------------------
 
@@ -197,12 +207,6 @@
 
   # Miscellaneous
   # --------------------------------------------------------------------------
-
-  # Sync files with the remote host (see 'User configuration' in .profile)
-  # Disabled by default; uncomment the line below to use
-  # usage:    git fs
-  # fs = !"fs && true"
-  fs = !"true"
 
   # Find a file by name
   # usage:    git find FILENAME
