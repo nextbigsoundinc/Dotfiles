@@ -3,10 +3,11 @@ Dotfiles
 
 ## Installation
 
-#### 1. Install dependencies
+#### 1. Set up dependencies
 
 Required:
 - [hub for Github](http://hub.github.com/)
+- A remote git repository called `upstream`
 
 Optional:
 - [Git tab-completion for Bash](https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion)
@@ -32,23 +33,21 @@ Don't forget to back up your existing gitconfig!
 ln -s ~/repos/Dotfiles/.gitconfig .gitconfig
 ```
 
-#### 5. Enter your usernames and emails in the dotfiles
+Alternatively, you can manually copy the parts of the gitconfig you like. However, it will be harder to get future updates to my gitconfig if you do.
 
-In `~/repos/Dotfiles/.profile`:
+#### 5. Replace the placeholder user info with your own
+
+In `.profile`:
 ```shell
 # User configuration
-remote_username="mike-petrovich"
-remote_host="dev"
-git_username="mpetrovich"
+remote_username="john-doe"
+remote_host="12.34.456.789"
+git_username="jdoe"
 ```
 
-In `~/repos/Dotfiles/.gitconfig`:
+In `.gitconfig`:
 ```shell
 [user]
-  name = Mike Petrovich
-  email = mike@nextbigsound.com
+  name = John Doe
+  email = jdoe@gmail.com
 ```
-
-## Notes
-
-- These dotfiles assume that your upstream remote is called `upstream`.
