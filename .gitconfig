@@ -19,130 +19,178 @@
 
   # Branching
   # --------------------------------------------------------------------------
+
   b = branch
   co = checkout
+
+  # Check out the local master branch
+  # usage:    git com
   com = checkout master
 
-  # Check out a new branch
+  # Create and check out a new branch
+  # usage:    git new BRANCH_NAME
+  # example:  git new bugfix
   new = checkout -b
 
   # Rename a branch
+  # usage:    git rename [OLD_BRANCH_NAME] NEW_BRANCH_NAME
+  # example:  git rename bugfixes
   rename = branch -m
 
-  # Pull down a copy of a remote branch
-  # usage: git copy REMOTE_USER REMOTE_BRANCH
-  # example: git copy mpetrovich bugfix
+  # Create a local copy of a remote branch
+  # usage:    git copy REMOTE_USER REMOTE_BRANCH
+  # example:  git copy mpetrovich bugfix
   copy = !"git fetch $1 $2 && git checkout -b $2 $1/$2 && true"
 
   # Delete a single branch locally and in the origin (be careful!)
+  # usage:    git delete BRANCH_NAME
+  # example:  git delete bugfix
   delete = !"git branch -D "$1"; git push origin :$1 && true"
 
   # Show all remotes
+  # usage:    git remotes
   remotes = remote -v show
 
 
   # History
   # --------------------------------------------------------------------------
 
-  # Grep the git log
-  # usage: git lg REGEX
-  # example: git lg "debug\b"
+  # Search the git log using a grep pattern
+  # usage:    git lg "REGEX"
+  # example:  git lg "debug\b"
   lg = log --grep
 
-  # Show all commits between the current branch and master
+  # Show all commits made since local master
+  # usage:    git l
   l = !"git --no-pager log master..HEAD --abbrev-commit --pretty=oneline"
 
-  # Show a tree of all commits
+  # Show a visualization of the commit history
+  # usage:    git tree
   tree = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-  # with timestamps
+  # ...with timestamps
+  # usage:    git tree2
   tree2 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) %C(bold cyan)%aD%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 
 
   # Reviewing
   # --------------------------------------------------------------------------
+
+  # Show files with uncommitted changes
+  # usage:    git st
   st = status
+  # ...abbreviated
+  # usage:    git s
   s = status -sb
 
-  # Compare unstaged changes with the current branch
+  # Show unstaged changes made in the current branch
+  # usage:    git du
   du = diff
 
-  # Compare staged changes with the current branch
+  # Show staged changes made in the current branch
+  # usage:    git ds
   ds = diff --staged
 
-  # Compare with master
+  # Show all changes made since master
+  # usage:    git dm
   dm = diff master
 
-  # Interactive staging
+  # Interactively stage changes
+  # usage:    git istage
   istage = add -p
 
   # Unstage all staged commits
+  # usage:    git unstage
   unstage = reset HEAD --
 
-  # Remove any uncommitted changes, including new/removed files
+  # Remove any uncommitted changes, including new & removed files
   # CAUTION: This is destructive and cannot be undone
+  # usage:    git nuke
   nuke = !"git reset --hard && git clean -fd"
 
 
   # Stashing
   # --------------------------------------------------------------------------
+
   sl = stash list
   sa = stash apply
   sp = stash pop
   sd = stash drop
 
-  # Stashes any uncommitted changes, including new/removed files
-  # usage: git ss [LABEL]
-  # example: git ss "Work in progress"
+  # Stash all uncommitted changes, including new & removed files
+  # usage:    git ss "STASH_LABEL"
+  # example:  git ss "Work in progress"
   ss = stash save --include-untracked
 
-  # Stashes only unstaged changes
-  si = stash save --keep-index
+  # Stash only unstaged changes
+  # usage:    git su
+  su = stash save --keep-index
 
 
   # Committing
   # --------------------------------------------------------------------------
+
+  # Commit only staged changes with the given commit message
+  # usage:    git cm "MESSAGE"
+  # example:  git cm "Fix bug for XYZ"
   cm = commit -m
 
-  # Stage all changes and commit them with a message
-  # usage: git cma MESSAGE
-  # example: git cma "Fix bug for XYZ"
+  # Commit all changes with the given commit message
+  # usage:    git cma "MESSAGE"
+  # example:  git cma "Fix bug for XYZ"
   cma = !"git add --all && git commit -a -m"
 
-  # Amend the last commit with any staged changes
+  # Amend the last commit with only staged changes
+  # usage:    git amend
   amend = !"git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend"
 
-  # Amend the last commit with any staged changes and a different message
-  amendm = commit --amend -m
-
-  # Amend the last commit with all uncommitted changes
+  # Amend the last commit with all changes
+  # usage:    git amend
   amenda = !"git add . && git amend"
 
-  # Commits all uncommitted changes as a "work in progress" commit
+  # Amend the last commit with any staged changes and a different message
+  # usage:    git amendm "MESSAGE"
+  # example:  git amendm "Fix bugs for XYZ"
+  amendm = commit --amend -m
+
+  # Commit all changes as a "work in progress" commit
+  # usage:    git wip
   wip = !"git add --all && git commit -a -m "WIP" --no-verify"
 
-  # Squashes all commits since master
-  # usage:    git squash MESSAGE
-  # example:  git squash "Add ability to do XYZ"
+  # Squash all commits made since master
+  # usage:    git squash "MESSAGE"
+  # example:  git squash "Fix bug for XYZ"
   squash = !"COMMITS=`git rev-list --count HEAD ^master`; git reset --soft HEAD~$COMMITS && git commit -m $1 && true"
 
-  # Un-commits the last commit but keeps it staged
-  undo = reset --soft HEAD^
+  # Un-commit the last commit, but keep it staged
+  # usage:    git undo [NUMBER_OF_COMMITS=1]
+  # example:  git undo    # Last commit
+  # example:  git undo 3  # Last 3 commits
+  undo = !"git reset --soft HEAD~$1 && true"
 
 
   # Updating
   # --------------------------------------------------------------------------
+
+  # Rebase the current branch against master
+  # usage:    git rb
   rb = !"git rebase master && git fs"
+  # ...interactively
+  # usage:    git rbi
   rbi = !"git rebase master --interactive && git fs"
+
   rbc = rebase --continue
   rbs = rebase --skip
   rba = rebase --abort
 
-  # Rebases the current branch against an updated master
+  # Update master with the latest from upstream,
+  # and rebase the current branch against it
+  # usage:    git latest
   latest = !"git checkout master && git pull upstream master && git push origin HEAD && git checkout - && git rebase master && git fs"
 
 
   # Pushing
   # --------------------------------------------------------------------------
+
   p = push origin HEAD
   pf = push origin HEAD --force
 
@@ -150,15 +198,17 @@
   # Miscellaneous
   # --------------------------------------------------------------------------
 
-  # Syncs files with the remote host (see 'User configuration' in .profile)
+  # Sync files with the remote host (see 'User configuration' in .profile)
   # Disabled by default; uncomment the line below to use
+  # usage:    git fs
   # fs = !"fs && true"
   fs = !"true"
 
   # Find a file by name
-  # usage: git find FILENAME
-  # example: git find index.php
+  # usage:    git find FILENAME
+  # example:  git find index.php
   find = !"sh -c 'git ls-tree -r --name-only HEAD | grep --color $1' -"
 
   # Lists all aliases in this file
+  # usage:    git aliases
   aliases = !"cat ~/.gitconfig"
