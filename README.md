@@ -83,9 +83,9 @@ git com;
 git latest;
 ```
 
-Then, we check out a new branch for our feature, called "shiny-new-feature".
+Then, we check out a new branch for our feature.
 ```
-git new shiny-new-feature;
+git new feature-xyz;
 ```
 
 We make some changes...
