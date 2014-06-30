@@ -3,8 +3,10 @@ export remote_username="john-doe"
 export remote_host="10.123.14.14"
 export git_username="jdoe"
 
-# Set Sublime as default editor
-export EDITOR='sub -w'
+# Set the default editor
+export EDITOR='vim'
+# ...or if you are working locally and have Sublime Text aliased to 'sub'
+# export EDITOR='sub -w'
 
 # Bash sugar
 alias ll="ls -alF"
