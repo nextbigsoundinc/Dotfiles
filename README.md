@@ -125,7 +125,7 @@ git rbc;
 
 Rebase successful, now let's open a pull request
 ```
-pr;
+pr;  # or `git pr`
 ```
 
 Someone suggests some changes...
