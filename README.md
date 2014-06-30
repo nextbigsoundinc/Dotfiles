@@ -73,7 +73,7 @@ Usage
 ----
 
 
-All dotfiles are fully documented with usage syntax and examples. For convenience, you can enter `git aliases` at any time to list all available git aliases.
+All dotfiles are documented with usage syntax and examples. For convenience, you can enter `git aliases` at any time to list all available git aliases.
 
 #### Example Workflow
 
