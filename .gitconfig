@@ -188,7 +188,10 @@
   # usage:    git rbi
   rbi = !"git rebase master --interactive && git fs"
 
-  rbc = rebase --continue
+  # Commits all resolved conflicts and continues the rebase
+  # usage:    git rbc
+  rbc = !"git add --all && git rebase --continue"
+
   rbs = rebase --skip
   rba = rebase --abort
 
