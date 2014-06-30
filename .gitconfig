@@ -120,6 +120,11 @@
   # Commits all uncommitted changes as a "work in progress" commit
   wip = !"git add --all && git commit -a -m "WIP" --no-verify"
 
+  # Squashes all commits since master
+  # usage:    git squash MESSAGE
+  # example:  git squash "Add ability to do XYZ"
+  squash = !"COMMITS=`git rev-list --count HEAD ^master`; git reset --soft HEAD~$COMMITS && git commit -m $1 && true"
+
   # Un-commits the last commit but keeps it staged
   undo = reset --soft HEAD^
 
