@@ -10,6 +10,7 @@
   # external = /Users/mike/bin/git-diff-cmd.sh
 
 [push]
+  # Uncomment the line below if using Git 1.8+
   # default = simple
 
 [rebase]
