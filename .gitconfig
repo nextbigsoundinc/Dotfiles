@@ -1,16 +1,16 @@
 [user]
-  name = John Doe
-  email = john@nextbigsound.com
+  name = Mike Petrovich
+  email = mike@nextbigsound.com
 
 [color]
   ui = true
 
 [diff]
   # Uncomment the line below after setting up an external diff tool via https://gist.github.com/bkeating/329690
-  # external = /Users/mike/bin/git-diff-cmd.sh
+  external = /Users/mike/bin/git-diff-cmd.sh
 
 [push]
-  default = simple
+  # default = simple
 
 [rebase]
   autosquash = true
@@ -23,8 +23,8 @@
   # Sync files with the remote host (see 'User configuration' in .profile)
   # Disabled by default; uncomment the line below to use
   # usage:    git fs
-  # fs = !"fs && true"  # Filesync ON
-  fs = !"true"  # Filesync OFF
+  fs = !"fs && true"  # Filesync ON
+  # fs = !"true"  # Filesync OFF
 
 
   # Branching

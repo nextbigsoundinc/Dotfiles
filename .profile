@@ -1,12 +1,12 @@
 # User configuration
-export remote_username="john-doe"
-export remote_host="10.123.14.14"
-export git_username="jdoe"
+export remote_username="mike-petrovich"
+export remote_host="dev"
+export git_username="mpetrovich"
 
 # Set the default editor
-export EDITOR='vim'
+# export EDITOR='vim'
 # ...or if you are working locally and have Sublime Text aliased to 'sub'
-# export EDITOR='sub -w'
+export EDITOR='sub -w'
 
 # Bash sugar
 alias ll="ls -alF"
