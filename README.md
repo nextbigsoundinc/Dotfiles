@@ -123,7 +123,7 @@ But someone else modified the same code, so conflicts!
 git rbc;
 ```
 
-Rebase successful, now let's open a pull request
+Rebase successful, now let's open a pull request.
 ```
 git pr;
 ```
@@ -148,5 +148,5 @@ git pf;
 
 After merging, we don't need our feature branch anymore.
 ```
-git delete feature;
+git delete feature-xyz;
 ```
