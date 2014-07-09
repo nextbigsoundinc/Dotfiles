@@ -11,7 +11,9 @@ export EDITOR='vim'
 # Bash sugar
 alias ll="ls -alF"
 alias g=git
-alias git=hub  # http://hub.github.com
+
+# If GitHub Hub (http://hub.github.com) is installed, uncomment the line below
+# alias git=hub
 
 # Enable tab-completion of git commands
 # https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
