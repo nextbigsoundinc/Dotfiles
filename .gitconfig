@@ -170,7 +170,7 @@
   # Squash all commits made since master
   # usage:    git squash "MESSAGE"
   # example:  git squash "Fix bug for XYZ"
-  squash = !"COMMITS=`git rev-list --count HEAD ^master`; git reset --soft HEAD~$COMMITS && git commit -m $1 && true"
+  squash = !"COMMITS=`git rev-list --count HEAD ^master`; git reset --soft HEAD~$COMMITS; git commit -m \"$1\" && true"
 
   # Un-commit the last commit, but keep it staged
   # usage:    git undo [NUMBER_OF_COMMITS=1]
