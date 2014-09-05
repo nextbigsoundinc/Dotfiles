@@ -93,17 +93,26 @@
   # usage:    git s
   s = status -sb
 
+  # Show all uncommitted changes inline, not using an external diff viewer
+  di = diff --no-ext-diff
+
   # Show unstaged changes made in the current branch
   # usage:    git du
   du = diff
+  # Show diff inline, not using an external diff viewer
+  dui = diff --no-ext-diff
 
   # Show staged changes made in the current branch
   # usage:    git ds
   ds = diff --staged
+  # Show diff inline, not using an external diff viewer
+  dsi = diff --staged --no-ext-diff
 
   # Show all changes made since master
   # usage:    git dm
   dm = diff master
+  # Show diff inline, not using an external diff viewer
+  dmi = diff master --no-ext-diff
 
   # Interactively stage changes
   # usage:    git istage
@@ -156,7 +165,7 @@
 
   # Amend the last commit with all changes
   # usage:    git amend
-  amenda = !"git add . && git amend"
+  amenda = !"git add --all && git amend"
 
   # Amend the last commit with any staged changes and a different message
   # usage:    git amendm "MESSAGE"
