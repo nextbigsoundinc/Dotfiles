@@ -69,7 +69,7 @@ fs() {
 	printf "Syncing files... "
 	local_source=`pwd -P`
 	remote_dest="/home/"$remote_username"/repos/"
-	rsync -qzar --exclude '.git*' --exclude '.DS_Store' --exclude 'dist' -e 'ssh' --delete $local_source $remote_username@$remote_host:$remote_dest
+	rsync -qzar --exclude '.git*' --exclude '.DS_Store' --exclude '/dist/' -e 'ssh' --delete $local_source $remote_username@$remote_host:$remote_dest
 	printf "done\n"
 }
 
