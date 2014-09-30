@@ -172,9 +172,13 @@
   # example:  git amendm "Fix bugs for XYZ"
   amendm = commit --amend -m
 
-  # Commit all changes as a "work in progress" commit
+  # Commit all changes as a work-in-progress commit
   # usage:    git wip
   wip = !"git add --all && git commit -a -m "WIP" --no-verify"
+
+  # Undo a work-in-progress commit (ie, opposite of `git wip`)
+  # usage:    git unwip
+  unwip = !"git undo && git unstage"
 
   # Squash all commits made since master
   # usage:    git squash "MESSAGE"
