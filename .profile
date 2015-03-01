@@ -5,8 +5,8 @@ export git_username="jdoe"
 
 # Set the default editor
 export EDITOR='vim'
-# ...or if you are working locally and have Sublime Text aliased to 'sub'
-# export EDITOR='sub -w'
+# ...or if you are working locally and have Sublime Text aliased to 'subl'
+# export EDITOR='subl -w'
 
 # Bash sugar
 alias ll="ls -alF"
