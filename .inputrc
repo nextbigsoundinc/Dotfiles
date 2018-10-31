@@ -1,0 +1,12 @@
+# Incremental searching with Up and Down. Example: Type 'ssh <up>' to get the last 'ssh' command you used
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+set completion-ignore-case On
+set expand-tilde on
+set convert-meta off
+set input-meta on
+set output-meta on
+set show-all-if-ambiguous on
+set visible-stats on
+set -o vi
