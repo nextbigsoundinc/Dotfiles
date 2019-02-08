@@ -73,9 +73,6 @@ fs() {
 	printf "done\n"
 }
 
-# Makes 'fs' available in git hooks
-export -f fs
-
 # Open a new pull request. (requires GitHub Hub, see hub.github.com)
 #
 # usage:
